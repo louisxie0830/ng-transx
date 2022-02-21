@@ -1,11 +1,13 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import gsap from "gsap";
 import { AnimateService } from '../animate.service';
 
 @Component({
   selector: 'ng-transx',
   templateUrl: './ng-transx.component.html',
-  styleUrls: ['./ng-transx.component.scss']
+  styleUrls: ['./ng-transx.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class NgTransxComponent implements OnInit, AfterViewInit {
   @Input() loop: boolean = false;
