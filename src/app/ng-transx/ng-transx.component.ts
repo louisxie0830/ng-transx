@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import gsap from "gsap";
 import { AnimateService } from '../animate.service';
 
@@ -15,6 +15,7 @@ export class NgTransxComponent implements OnInit, AfterViewInit {
   @Input() time: number = 0.6;
   @Input() nextTransition: string = 'moveLeftBack';
   @Input() prevTransition: string = 'moveRightBack';
+  @Output() transitionend: EventEmitter<string | number> = new EventEmitter<string | number>();
   state = 'end';
   currentIndex = 0;
   list: Array<any> = [];
@@ -27,6 +28,7 @@ export class NgTransxComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.currentIndex = this.defaultIndex;
+
     this.addSubList();
     this.showCurrentComp();
   }
@@ -51,7 +53,7 @@ export class NgTransxComponent implements OnInit, AfterViewInit {
   }
 
   showComp(elem) {
-    console.log('elem: ', elem);
+
     const displayStyle = elem.getAttribute("data") || "block";
     elem.style.display = displayStyle;
   }
@@ -141,20 +143,21 @@ export class NgTransxComponent implements OnInit, AfterViewInit {
       duration: time,
       transformOrigin: "50% 50%",
       ...two.to,
-      onComplete: this.transitionEnd,
+      onComplete: this.transitionEnd.bind(this),
       onCompleteParams: [direction]
     });
   }
 
   transitionEnd(direction) {
     this.state = "end";
-    if (direction == "next")
+    if (direction == "next") {
       this.currentIndex++;
-    else
+    } else {
       this.currentIndex = this.currentIndex + this.list.length - 1;
-    this.currentIndex = this.currentIndex % this.list.length
+    }
+    this.currentIndex = this.currentIndex % this.list.length;
     this.showCurrentComp();
-    // this.$emit("transitionend", this.currentIndex);
+    this.transitionend.emit(this.currentIndex);
 
     if (this.autoplay && (this.loop || this.currentIndex < this.list.length)) {
       setTimeout(() => {

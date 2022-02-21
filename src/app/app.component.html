@@ -6,19 +6,20 @@
       [autoplay]="false"
       [nextTransition]="nextTransition"
       [prevTransition]="prevTransition"
+      (transitionend)="transitionEnd"
     >
       <image class="image" *ngFor="let item of items" [index]="item"></image>
     </ng-transx>
   </div>
   <div>
     <div class="btn-group">
-      <div>当前第{{ currentIndex + 1 }}个组件</div>
+      <div> current {{ currentIndex + 1 }}</div>
     </div>
 
     <div class="btn-group">
-      <div class="button">上一个</div>
-      <div class="button">下一个</div>
-      <div class="button">跳 转</div>
+      <div class="button" (click)="transition('prev')">prev</div>
+      <div class="button" (click)="transition('next')">netx</div>
+      <div class="button">jump to</div>
     </div>
 
     <div class="btn-group">

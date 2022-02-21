@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgTransxComponent } from './ng-transx/ng-transx.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
+  @ViewChild(NgTransxComponent, {static : true}) child : NgTransxComponent;
   title = 'ng-transx';
   currentIndex = 0;
   items = [1, 2, 3, 4, 5];
@@ -36,4 +39,12 @@ export class AppComponent {
     { text: "scaleXLeft", value: "scaleXLeft" },
     { text: "scaleXRight", value: "scaleXRight" }
   ];
+
+  transition(type) {
+    this.child.next(type);
+  }
+
+  transitionEnd(currentIndex) {
+    this.currentIndex = currentIndex;
+  }
 }
