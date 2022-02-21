@@ -1,0 +1,52 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin: 40px 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.group {
+  margin: 0 auto;
+  position: relative;
+  left: 50%;
+  margin-left: -200px;
+  height: 650px;
+  width: 400px;
+}
+
+.transition {
+  margin: 10px;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.button {
+  margin: 20px auto;
+  width: 180px;
+  height: 50px;
+  background: #fccff2;
+  position: relative;
+  line-height: 50px;
+}
+.btn-group .button {
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  height: 40px;
+  width: 120px;
+  color: #fff;
+  background: #22ccff;
+  line-height: 40px;
+  cursor: pointer;
+}

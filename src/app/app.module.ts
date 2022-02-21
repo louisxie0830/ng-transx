@@ -3,10 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgTransxComponent } from './ng-transx/ng-transx.component';
+import { ImageComponent } from './image/image.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NgTransxComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,
