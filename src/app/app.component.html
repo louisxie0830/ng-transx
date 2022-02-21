@@ -6,7 +6,7 @@
       [autoplay]="false"
       [nextTransition]="nextTransition"
       [prevTransition]="prevTransition"
-      (transitionend)="transitionEnd"
+      (transitionend)="transitionEnd($event)"
     >
       <image class="image" *ngFor="let item of items" [index]="item"></image>
     </ng-transx>
